@@ -1,0 +1,18 @@
+* {
+  box-sizing: border-box;
+  margin    : 0;
+  padding   : 0;
+}
+p{
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  touch-action: manipulation;
+  -ms-touch-action: manipulation;
+  overscroll-behavior: contain;
+}
+body{
+  background: var(--color-dark-blue);
+}

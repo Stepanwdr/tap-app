@@ -24,7 +24,7 @@ function formatTime(seconds: number) {
 
 export const Puzzle:FC<PuzzleProps>=({ rows, cols, imageSrc })=> {
   const [pieces, setPieces] = useState<number[]>([]);
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [, setSelectedIndex] = useState<number | null>(null);
   const [timeLeft, setTimeLeft] = useState(60);
 
   useEffect(() => {

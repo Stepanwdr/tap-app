@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { ShieldUser,CirclePoundSterling } from "lucide-react";
 const mockUser =  {
   name:"Stepan",
@@ -61,9 +61,4 @@ const Coin=styled.div`
     gap: 5px;
     background-image: var(--gradient-bg) ;
     color: white;
-`
-
-const Label =styled.div`
-margin-left: auto;
-
 `

@@ -33,12 +33,12 @@ export const TapToAslan = () => {
 
   return (
     <Wrapper>
-      <SpriteContainer onClick={(ev)=>handleTap({
+      <Button onClick={(ev)=>handleTap({
         x:ev.clientX,
         y:ev.clientY
       } as tap)}>
         <AslanImage src={level1} />
-      </SpriteContainer>
+      </Button>
       {animatedNumbers.map((num) => (
         <AnimatedText key={num.id} style={{ left: num.x, top: num.y }}>
           +10
@@ -57,7 +57,7 @@ const Wrapper = styled.div`
     overflow: hidden; /* Hide numbers that go out of bounds */
 `;
 
-const SpriteContainer = styled.div`
+const Button = styled.div`
     max-width: 400px;
     max-height: 400px;
     width: 200px;

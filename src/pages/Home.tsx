@@ -2,11 +2,12 @@ import styled from "styled-components";
 import {GamesList} from "../widgets/GamesList/GamesList";
 import {CurtainDrawer} from "../shared/ui/CurtainDrawer";
 import {useLocation, useNavigate} from "react-router-dom";
-import { Puzzle } from "../widgets/GamesList/Puzzle/ui/Puzzle";
+import { TapToAslan } from "../widgets/GamesList/TapToAslan/TapToAslan";
+import { useState } from "react";
 
 const Home = () => {
-
-  const {pathname}=useLocation();
+const [tapCount, setTapCount]=useState(0)
+  const { pathname } = useLocation();
 
   const navigate=useNavigate();
 
@@ -14,7 +15,7 @@ const Home = () => {
     switch (pathname) {
 
       case '/games':
-        return  <GamesList/>
+        return  <GamesList />
       case '/earn':
         return  'earn'
       case '/gifts':
@@ -30,7 +31,10 @@ const Home = () => {
 
   return (
     <Wrapper>
-      <Puzzle rows={4} cols={4} imageSrc={'/puzzle.jpg'}/>
+      <TapToAslan
+        tapCount={tapCount}
+        setTapCount={setTapCount}
+      />
       <CurtainDrawer fullHeight onClose={()=>navigate('/')} isOpen={['/games','/earn','/gifts','/top','/profile'].includes(pathname)} >
         {renderPages()}
       </CurtainDrawer >

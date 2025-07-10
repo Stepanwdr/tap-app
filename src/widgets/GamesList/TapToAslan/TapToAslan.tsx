@@ -1,16 +1,23 @@
 import level1 from "/level1.png";
 import styled, { keyframes } from "styled-components";
-import { useState} from "react";
+import { useState } from "react";
+
+
+type tap = {
+  id:number
+  x:number
+  y: number,
+}
 
 export const TapToAslan = () => {
-  const [animatedNumbers, setAnimatedNumbers] = useState([]); // State to hold animated numbers
+  const [animatedNumbers, setAnimatedNumbers] = useState<tap[]>([]); // State to hold animated numbers
 
-  const handleTap = (e) => {
+  const handleTap = (tap:tap) => {
     // Create a new animated number object
     const newNumber = {
       id: Date.now(), // Unique ID for each animation
-      x: e.clientX, // X position of the click
-      y: e.clientY, // Y position of the click
+      x: tap.x, // X position of the click
+      y: tap.y, // Y position of the click
     };
 
     // Add the new number to the animatedNumbers array
@@ -26,7 +33,10 @@ export const TapToAslan = () => {
 
   return (
     <Wrapper>
-      <SpriteContainer onClick={handleTap}>
+      <SpriteContainer onClick={(ev)=>handleTap({
+        x:ev.clientX,
+        y:ev.clientY
+      } as tap)}>
         <AslanImage src={level1} />
       </SpriteContainer>
       {animatedNumbers.map((num) => (

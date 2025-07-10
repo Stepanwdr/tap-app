@@ -4,7 +4,6 @@ import type { ErrorResponse } from '../types/app'
 import { clearStore } from '../utils'
 import { config } from "../lib";
 
-console.log(config.BASE_URL)
 export const apiInstance = axios.create({
   baseURL: config.BASE_URL,
 })

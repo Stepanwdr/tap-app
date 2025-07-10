@@ -32,7 +32,6 @@ const [tapCount, setTapCount]=useState(0)
   return (
     <Wrapper>
       <TapToAslan
-        tapCount={tapCount}
         setTapCount={setTapCount}
       />
       <CurtainDrawer fullHeight onClose={()=>navigate('/')} isOpen={['/games','/earn','/gifts','/top','/profile'].includes(pathname)} >

@@ -1,8 +1,13 @@
 import styled from "styled-components";
-import {GamesList} from "../widgets/GamesList/GamesList";
-import {CurtainDrawer} from "../shared/ui/CurtainDrawer";
-import {useLocation, useNavigate} from "react-router-dom";
+import { GamesList } from "../widgets/GamesList/GamesList";
+import { CurtainDrawer } from "../shared/ui/CurtainDrawer";
+import { useLocation, useNavigate } from "react-router-dom";
 import { TapToAslan } from "../widgets/GamesList/TapToAslan/TapToAslan";
+
+
+
+const routes=['/games','/earn','/gifts','/top','/profile']
+
 
 const Home = () => {
   const { pathname } = useLocation();
@@ -30,7 +35,7 @@ const Home = () => {
   return (
     <Wrapper>
       <TapToAslan />
-      <CurtainDrawer fullHeight onClose={()=>navigate('/')} isOpen={['/games','/earn','/gifts','/top','/profile'].includes(pathname)} >
+      <CurtainDrawer fullHeight onClose={()=>navigate('/')} isOpen={routes.includes(pathname)} >
         {renderPages()}
       </CurtainDrawer >
     </Wrapper>

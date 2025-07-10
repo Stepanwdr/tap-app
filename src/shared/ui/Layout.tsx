@@ -6,6 +6,7 @@ interface Props {
   slotMenu:ReactNode;
   slotHeader:ReactNode;
 }
+
 export const Layout:FC<Props> = ({slotMenu,slotHeader}) => {
   return (
     <Wrapper>

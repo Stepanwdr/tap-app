@@ -81,7 +81,7 @@ const Nav= styled.nav`
    padding: 15px;
    opacity: .8;
    user-select: none;
-    z-index: 100;
+   z-index: 100;
 `
 
 const List = styled.ul`

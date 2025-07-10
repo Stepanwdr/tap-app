@@ -57,7 +57,7 @@ const Wrapper = styled.div`
     overflow: hidden; /* Hide numbers that go out of bounds */
 `;
 
-const Button = styled.div`
+const Button = styled.button`
     max-width: 400px;
     max-height: 400px;
     width: 200px;

@@ -18,6 +18,12 @@ const GlobalStyle = createGlobalStyle`
         font-family: Montserrat, Arial, sans-serif;
         background-color: #000c24;
     }
+    
+    button{
+       -webkit-tap-highlight-color: transparent;
+        outline: none;
+        user-select: none;
+    }
 
     a {
         text-decoration: none;

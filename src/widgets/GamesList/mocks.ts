@@ -1,4 +1,5 @@
 import Puzzle from "/games/puzzl-icon.jpg"
+
   export const mockGames=[{
     id:231231,
     name:"Pik Puzzle",

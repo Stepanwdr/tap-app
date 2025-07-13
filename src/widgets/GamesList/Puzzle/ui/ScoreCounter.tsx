@@ -1,4 +1,4 @@
-import {type Dispatch, type FC, type SetStateAction, useEffect, useState} from "react";
+import {type Dispatch, type SetStateAction, useEffect, useState} from "react";
 import { io } from "socket.io-client";
 import {config} from "../../../../shared/lib";
 
@@ -10,7 +10,7 @@ interface Props {
   score: number
 }
 
-export const ScoreCounter:FC<Props> = ({ tgUserId, setScore, score }) => {
+export const ScoreCounter= ({ tgUserId, setScore, score }:Props) => {
 
   const [ updated, setUpdated ] = useState(score)
 
@@ -38,12 +38,6 @@ export const ScoreCounter:FC<Props> = ({ tgUserId, setScore, score }) => {
     socket.emit("incrementScore", { tgUserId });
   };
 
-  return (
-    <div>
-      updated:{updated}
-      <h2>Ваш счёт: {score}</h2>
-      <button onClick={increment}>+1 к счёту</button>
-    </div>
-  );
+  return {increment,score:updated}
 };
 

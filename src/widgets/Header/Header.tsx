@@ -1,37 +1,44 @@
 import styled from "styled-components";
-import { useEffect, useState } from "react";
-import { ShieldUser,CirclePoundSterling } from "lucide-react";
-const mockUser =  {
-  name:"Stepan",
-  coin:100,
-  avatar:'',
-}
+import { useEffect,  } from "react";
+import { ShieldUser, CirclePoundSterling } from "lucide-react";
+import { useStoreUser } from "../../shared/model/useUserStore.ts";
+import { apiInstance } from "../../shared/api";
+import {Avatar} from "../../shared/ui/Avatar.tsx";
 
 export const Header = () => {
-  const [user, setUser] = useState<any>(null);
-  const tg = window.Telegram?.WebApp;
+  const { user, setUser, setCoin, coin } = useStoreUser();
 
-
-  useEffect(() => {
-      const tgUser = tg?.initDataUnsafe?.user;
-      setUser(tgUser);
-  }, []);
-
-  useEffect(() => {
+    const sendAuthRequest = async () => {
+    const tg = window.Telegram?.WebApp;
     tg?.ready();
+    const user = await tg?.initDataUnsafe?.user
+   apiInstance.post("api/auth-telegram", {
+      tgUserId: user?.id || 32323232,
+      firstName: user?.first_name || "Grno",
+      username: user?.username || "Grno",
+      coin: 0,
+      avatar: user?.photo_url,
+    })
+      .then(res => {
+        setUser(res.data.user)
+        setCoin(res?.data?.user?.coin)
+      })
+      .catch(err => console.error(err));
+  };
+
+  useEffect(() => {
+    void sendAuthRequest()
   }, []);
+
   return (
     <StyledHeader>
      <HeaderInner>
-       {user?.name}
-       <ShieldUser />
-       {mockUser.name}
+       {user?.username}
+        <Avatar src={user?.avatar} fallback={<ShieldUser/>}/>
        <Coin>
          <CirclePoundSterling />
-         {mockUser.coin}
+         {coin}
        </Coin>
-
-
      </HeaderInner>
     </StyledHeader>
   );

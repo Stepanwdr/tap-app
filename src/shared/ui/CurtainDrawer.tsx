@@ -109,7 +109,7 @@ const Drawer = styled.div<{ isVisible: boolean; fullHeight?: boolean }>`
     padding: 20px;
     z-index: 1001;
     overflow-y: auto;
-    animation: ${({isVisible}) => (isVisible ? fadeIn : fadeOut)} 2s forwards;
+    animation: ${({isVisible}) => (isVisible ? fadeIn : fadeOut)} .4s forwards;
     box-shadow: 1px 2px 40px #c8c8c8;
 
     .close {

@@ -1,15 +1,16 @@
 import styled from "styled-components";
-import {mockGames} from "./mocks";
+import { mockGames } from "./mocks";
 
 export const GamesList = () => {
+
   return (
     <Wrapper>
-      <p>Խաղեր ({mockGames.length})</p>
+      <p>Խաղեր ({ mockGames.length })</p>
       <ul>
-        {mockGames.map((game) =>
+        { mockGames.map((game) =>
           <Game key={game.id}>
             <GameLogo>
-              <img src={game.image} alt="sds"/>
+              <img src={game.image} alt="sdsd" />
             </GameLogo>
             <Name>{game.name}</Name>
           </Game>

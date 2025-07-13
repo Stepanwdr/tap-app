@@ -1,6 +1,8 @@
 import level1 from "/level1.png";
 import styled, { keyframes } from "styled-components";
 import { useState } from "react";
+import { useScoreCounter } from "../../../shared/model/useScoreCounter";
+import { useStoreUser } from "../../../shared/model/useUserStore";
 
 
 type tap = {
@@ -11,6 +13,8 @@ type tap = {
 
 export const TapToAslan = () => {
   const [animatedNumbers, setAnimatedNumbers] = useState<tap[]>([]); // State to hold animated numbers
+  const { setCoin, coin , user} = useStoreUser()
+  const { increment } = useScoreCounter({ tgUserId:user?.tgUserId || 0})
 
   const handleTap = (tap:tap) => {
     // Create a new animated number object
@@ -19,16 +23,17 @@ export const TapToAslan = () => {
       x: tap.x, // X position of the click
       y: tap.y, // Y position of the click
     };
-
+    setCoin(coin + 10)
+    increment()
     // Add the new number to the animatedNumbers array
     setAnimatedNumbers((prevNumbers) => [...prevNumbers, newNumber]);
-
     // Remove the number after its animation is complete (e.g., 1 second)
     setTimeout(() => {
       setAnimatedNumbers((prevNumbers) =>
         prevNumbers.filter((num) => num.id !== newNumber.id)
       );
     }, 1000); // Adjust this duration to match your animation
+
   };
 
   return (
@@ -93,7 +98,7 @@ const AnimatedText = styled.div`
   font-size: 1.5em; /* Adjust font size */
   font-weight: bold;
   pointer-events: none; /* Make sure it doesn't interfere with clicks */
-  animation: ${fadeAndMove} 0.2s forwards; /* Apply animation */
+  animation: ${fadeAndMove} 0.4s forwards; /* Apply animation */
   z-index: 10; /* Ensure it's above other elements */
   transform: translate(-50%, -100%); /* Center the text relative to the click */
 `;

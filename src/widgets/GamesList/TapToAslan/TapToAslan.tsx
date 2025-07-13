@@ -1,5 +1,5 @@
 import level1 from "/level1.png";
-import styled, { keyframes } from "styled-components";
+import styled, {css, keyframes} from "styled-components";
 import { useState } from "react";
 import { useScoreCounter } from "../../../shared/model/useScoreCounter";
 import { useStoreUser } from "../../../shared/model/useUserStore";
@@ -15,6 +15,8 @@ export const TapToAslan = () => {
   const [animatedNumbers, setAnimatedNumbers] = useState<tap[]>([]); // State to hold animated numbers
   const { setCoin, coin , user} = useStoreUser()
   const { increment } = useScoreCounter({ tgUserId:user?.tgUserId || 0})
+  const [clicks, setClicks] = useState(0);
+  const [animate, setAnimate] = useState(false);
 
   const handleTap = (tap:tap) => {
     // Create a new animated number object
@@ -24,6 +26,11 @@ export const TapToAslan = () => {
       y: tap.y, // Y position of the click
     };
     setCoin(coin + 10)
+    setAnimate(true);
+    setTimeout(() => setAnimate(false), 900);
+    const newClicks = clicks + 1;
+    setClicks(newClicks);
+
     increment()
     // Add the new number to the animatedNumbers array
     setAnimatedNumbers((prevNumbers) => [...prevNumbers, newNumber]);
@@ -42,7 +49,7 @@ export const TapToAslan = () => {
         x:ev.clientX,
         y:ev.clientY
       } as tap)}>
-        <AslanImage src={level1} />
+        <AslanImage src={level1} animate={animate} />
       </Button>
       {animatedNumbers.map((num) => (
         <AnimatedText key={num.id} style={{ left: num.x, top: num.y }}>
@@ -53,9 +60,19 @@ export const TapToAslan = () => {
   );
 };
 
+// Анимация прыжка
+const jump = keyframes`
+  0% { transform: translateY(0); }
+  30% { transform: translateY(-20px); }
+  60% { transform: translateY(5px); }
+  100% { transform: translateY(0); }
+`;
+
+
 const Wrapper = styled.div`
     display: flex;
     justify-content: center;
+    align-items: center;
     width: 100%;
     height: calc(100vh - 200px);
     position: relative; /* Needed for absolute positioning of animated numbers */
@@ -72,13 +89,15 @@ const Button = styled.button`
     cursor: pointer; /* Indicate clickable area */
 `;
 
-const AslanImage = styled.img`
-    object-fit: contain;
-    max-width: 300px;
-    text-align: center;
-    margin-bottom: auto;
+const AslanImage = styled.img<{ animate: boolean }>`
+    width: 280px;
+    height: auto;
+    ${({ animate }) =>
+            animate &&
+            css`
+      animation: ${jump} 0.6s ease;
+    `}
 `;
-
 // Keyframes for the animation
 const fadeAndMove = keyframes`
   0% {

@@ -1,4 +1,3 @@
-// Avatar.tsx
 import styled from "styled-components";
 import React from "react";
 
@@ -12,6 +11,8 @@ export const Avatar: React.FC<AvatarProps> = ({
   fallback,
   ...rest
 }) => {
+
+
   return (
     <AvatarWrapper size={size} border={border} {...rest}>
       {src ? <AvatarImage width={40}  src={src} alt={alt} /> : fallback || "👤"}

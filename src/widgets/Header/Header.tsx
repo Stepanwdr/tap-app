@@ -4,9 +4,11 @@ import { ShieldUser } from "lucide-react";
 import { useStoreUser } from "../../shared/model/useUserStore.ts";
 import { apiInstance } from "../../shared/api";
 import {Avatar} from "../../shared/ui/Avatar";
+import {getDaysCount} from "../../shared/utils/date";
 
 export const Header = () => {
   const { user, setUser, setCoin } = useStoreUser();
+  const daysCount = getDaysCount(user?.createdAt || '');
 
     const sendAuthRequest = async () => {
     const tg = window.Telegram?.WebApp;
@@ -35,7 +37,9 @@ export const Header = () => {
      <HeaderInner>
        {user?.username}
         <Avatar src={user?.avatar} fallback={<ShieldUser/>}/>
+       <Days>Day {daysCount}</Days>
      </HeaderInner>
+
     </StyledHeader>
   );
 };
@@ -53,4 +57,10 @@ const HeaderInner =styled.div`
   gap: 5px;
   align-items: center;
   width: 100%;
+`
+
+const Days =styled.div`
+ display: flex;
+ align-items: center;
+ margin-left: auto;
 `

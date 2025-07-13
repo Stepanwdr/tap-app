@@ -4,4 +4,5 @@ export interface User {
   username:string
   coin: number
   avatar:string
+  createdAt: string
 }

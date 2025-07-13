@@ -3,7 +3,7 @@ import styled, {css, keyframes} from "styled-components";
 import { useState } from "react";
 import { useScoreCounter } from "../../../shared/model/useScoreCounter";
 import { useStoreUser } from "../../../shared/model/useUserStore";
-import { CirclePoundSterling } from "lucide-react";
+import { Dog } from "lucide-react";
 
 
 type tap = {
@@ -46,7 +46,7 @@ export const TapToAslan = () => {
 
   return (
     <Wrapper>
-      <Coin><CirclePoundSterling/>{coin}</Coin>
+      <Coin><Dog/>{coin}</Coin>
       <Button onClick={(ev)=>handleTap({
         x:ev.clientX,
         y:ev.clientY

@@ -8,7 +8,7 @@ import {getDaysCount} from "../../shared/utils/date";
 
 export const Header = () => {
   const { user, setUser, setCoin } = useStoreUser();
-  const daysCount = getDaysCount(user?.createdAt || '');
+  const daysCount = getDaysCount(user?.createdAt || '') || 1;
 
     const sendAuthRequest = async () => {
     const tg = window.Telegram?.WebApp;
@@ -37,7 +37,7 @@ export const Header = () => {
      <HeaderInner>
        {user?.username}
         <Avatar src={user?.avatar} fallback={<ShieldUser/>}/>
-       <Days>Day {daysCount}</Days>
+       <Days>Օր {daysCount}</Days>
      </HeaderInner>
 
     </StyledHeader>

@@ -3,7 +3,7 @@ import { useEffect,  } from "react";
 import { ShieldUser, CirclePoundSterling } from "lucide-react";
 import { useStoreUser } from "../../shared/model/useUserStore.ts";
 import { apiInstance } from "../../shared/api";
-import {Avatar} from "../../shared/ui/Avatar.tsx";
+import {Avatar} from "../../shared/ui/Avatar";
 
 export const Header = () => {
   const { user, setUser, setCoin, coin } = useStoreUser();
@@ -35,10 +35,6 @@ export const Header = () => {
      <HeaderInner>
        {user?.username}
         <Avatar src={user?.avatar} fallback={<ShieldUser/>}/>
-       <Coin>
-         <CirclePoundSterling />
-         {coin}
-       </Coin>
      </HeaderInner>
     </StyledHeader>
   );

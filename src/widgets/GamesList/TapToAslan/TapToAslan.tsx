@@ -3,6 +3,7 @@ import styled, {css, keyframes} from "styled-components";
 import { useState } from "react";
 import { useScoreCounter } from "../../../shared/model/useScoreCounter";
 import { useStoreUser } from "../../../shared/model/useUserStore";
+import { CirclePoundSterling } from "lucide-react";
 
 
 type tap = {
@@ -45,6 +46,7 @@ export const TapToAslan = () => {
 
   return (
     <Wrapper>
+      <Coin><CirclePoundSterling/>{coin}</Coin>
       <Button onClick={(ev)=>handleTap({
         x:ev.clientX,
         y:ev.clientY
@@ -77,6 +79,7 @@ const Wrapper = styled.div`
     height: calc(100vh - 200px);
     position: relative; /* Needed for absolute positioning of animated numbers */
     overflow: hidden; /* Hide numbers that go out of bounds */
+    flex-direction: column;
 `;
 
 const Button = styled.button`
@@ -121,3 +124,13 @@ const AnimatedText = styled.div`
   z-index: 10; /* Ensure it's above other elements */
   transform: translate(-50%, -100%); /* Center the text relative to the click */
 `;
+
+const Coin =styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  font-size: 2rem;
+  align-items: center;
+  color: #213547;
+  font-weight: bold;
+`

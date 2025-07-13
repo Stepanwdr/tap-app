@@ -96,10 +96,10 @@ const AslanImage = styled.img<{ animate: boolean }>`
     width: 280px;
     height: auto;
     ${({ animate }) =>
-            animate &&
-            css`
+      animate &&
+      css`
       animation: ${jump} 0.6s ease;
-    `}
+  `}
 `;
 // Keyframes for the animation
 const fadeAndMove = keyframes`

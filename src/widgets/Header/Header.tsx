@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import { useEffect,  } from "react";
-import { ShieldUser, CirclePoundSterling } from "lucide-react";
+import { ShieldUser } from "lucide-react";
 import { useStoreUser } from "../../shared/model/useUserStore.ts";
 import { apiInstance } from "../../shared/api";
 import {Avatar} from "../../shared/ui/Avatar";
 
 export const Header = () => {
-  const { user, setUser, setCoin, coin } = useStoreUser();
+  const { user, setUser, setCoin } = useStoreUser();
 
     const sendAuthRequest = async () => {
     const tg = window.Telegram?.WebApp;
@@ -53,15 +53,4 @@ const HeaderInner =styled.div`
   gap: 5px;
   align-items: center;
   width: 100%;
-`
-
-const Coin=styled.div`
-    margin-left: auto;
-    border-radius: 10px;
-    padding: 5px 10px;
-    font-weight: bold;
-    display: flex;
-    gap: 5px;
-    background-image: var(--gradient-bg) ;
-    color: white;
 `
